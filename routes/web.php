@@ -15,7 +15,9 @@ Route::resource('players', PlayerController::class);
 Route::resource('teams', TeamController::class);
 
 // Rutas para presidentes
-Route::resource('presidents', PresidentController::class);
+Route::resource('presidents', PresidentController::class)->parameters([
+    'presidents' => 'president:dni' // Usar DNI como identificador
+]);
 
 // Rutas para partidos
 Route::resource('games', GameController::class);

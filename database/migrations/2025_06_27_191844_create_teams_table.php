@@ -15,15 +15,15 @@ return new class extends Migration
 public function up(): void
 {
     Schema::create('teams', function (Blueprint $table) {
-        $table->engine = 'InnoDB';
-        $table->id('codigo'); // PK
-        $table->string('estadio');
-        $table->integer('aforo');
-        $table->integer('año');
-        $table->string('presidente_dni');
+        $table->id('code'); // PK
+        $table->string('name');
+        $table->integer('stadium');
+        $table->integer('capacity');
+        $table->string('year');
+        $table->string('president_dni'); // 1 a 1 relacion con presidents
         $table->timestamps();
 
-        $table->foreign('presidente_dni')->references('dni')->on('presidents')->onDelete('cascade');
+        $table->foreign('president_dni')->references('dni')->on('presidents')->onDelete('cascade');
     });
 }
 

@@ -19,11 +19,12 @@
             @foreach($presidents as $president)
             <tr>
                 <td>{{ $president->dni }}</td>
-                <td>{{ $president->nombre }}</td>
-                <td>{{ $president->apellidos }}</td>
-                <td>{{ $president->fecha_nac }}</td>
-                <td>{{ $president->año }}</td>
+                <td>{{ $president->name }}</td>
+                <td>{{ $president->last_name }}</td>
+                <td>{{ $president->birth_date }}</td>
+                <td>{{ $president->year }}</td>
                 <td>
+                    <a href="{{ route('presidents.show', $president->dni) }}" class="btn btn-info btn-sm">Ver Más</a>
                     <a href="{{ route('presidents.edit', $president->dni) }}" class="btn btn-primary btn-sm">Editar</a>
                     <form action="{{ route('presidents.destroy', $president->dni) }}" method="POST" style="display:inline;">
                         @csrf

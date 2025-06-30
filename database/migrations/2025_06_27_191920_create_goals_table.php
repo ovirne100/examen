@@ -9,19 +9,19 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-  
+
 public function up(): void
 {
     Schema::create('goals', function (Blueprint $table) {
-        $table->id('codigo');           // PK
-        $table->integer('minuto');
-        $table->string('desc');
-        $table->unsignedBigInteger('jugador_id'); // FK a jugadores
-        $table->unsignedBigInteger('partido_id'); // FK a partidos
+        $table->id('code');           // PK
+        $table->integer('minute');
+        $table->string('description')->nullable();
+        $table->unsignedBigInteger('player_code'); // jugador que hizo el gol
+        $table->unsignedBigInteger('game_code'); // partido en el que hizo el gol
         $table->timestamps();
 
-        $table->foreign('jugador_id')->references('codigo')->on('players')->onDelete('cascade');
-        $table->foreign('partido_id')->references('codigo')->on('games')->onDelete('cascade');
+        $table->foreign('player_code')->references('code')->on('players')->onDelete('cascade');
+        $table->foreign('game_code')->references('code')->on('games')->onDelete('cascade');
     });
 }
 

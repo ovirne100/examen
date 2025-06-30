@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\President;
+use App\Models\President; 
 use Illuminate\Http\Request;
 
 class PresidentController extends Controller
@@ -23,18 +23,17 @@ class PresidentController extends Controller
     // Guardar un nuevo presidente
     public function store(Request $request)
     {
-        $request->validate([
+      $validated = $request->validate([
             'dni' => 'required|unique:presidents,dni',
-            'nombre' => 'required',
-            'apellidos' => 'required',
-            'fecha_nac' => 'required|date',
-            'año' => 'required|integer',
+            'name' => 'required|string',
+            'last_name' => 'required|string',
+            'birth_date' => 'required|date',
+            'year' => 'required|integer',
         ]);
+  President::create($validated);
 
-        President::create($request->all());
-        return redirect()->route('presidents.index')->with('success', 'Presidente creado correctamente.');
+        return redirect()->route('presidents.index')->with('success', 'President created successfully!');
     }
-
     // Mostrar un presidente específico
     public function show(President $president)
     {
@@ -51,10 +50,10 @@ class PresidentController extends Controller
     public function update(Request $request, President $president)
     {
         $request->validate([
-            'nombre' => 'required',
-            'apellidos' => 'required',
-            'fecha_nac' => 'required|date',
-            'año' => 'required|integer',
+            'name' => 'required',
+            'last_name' => 'required',
+            'birth_date' => 'required|date',
+            'year' => 'required|integer',
         ]);
 
         $president->update($request->all());

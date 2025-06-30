@@ -16,14 +16,14 @@ public function up(): void
 {
     Schema::create('presidents', function (Blueprint $table) {
         $table->string('dni')->primary(); // PK
-        $table->string('nombre');
-        $table->string('apellidos');
-        $table->date('fecha_nac');
-        $table->integer('año');
+        $table->string('name');
+        $table->string('last_name');
+        $table->date('birth_date');
+        $table->integer('year');
         $table->timestamps();
     });
 }
-    
+
 
     /**
      * Reverse the migrations.

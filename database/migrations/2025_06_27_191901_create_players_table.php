@@ -12,14 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('players', function (Blueprint $table) {
-            $table->id('codigo')->unique(); // clave natural
-            $table->string('nombre');
-            $table->string('posición');
-            $table->date('fecha_nac');
-            $table->unsignedBigInteger('team_codigo'); //fk a equipos
-            // Clave foránea
-            $table->foreign('team_codigo')->references('codigo')->on('teams');
+            $table->id('code')->unique(); // pk
+            $table->string('name');
+            $table->string('position');
+            $table->date('birth_date');
+
+            $table->unsignedBigInteger('team_code'); // fk de teams
+            $table->foreign('team_code')->references('code')->on('teams')->onDelete('cascade');
             $table->timestamps();
+
         });
     }
 
