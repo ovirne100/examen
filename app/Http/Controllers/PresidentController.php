@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\President; 
+use App\Models\President;
 use Illuminate\Http\Request;
 
 class PresidentController extends Controller
@@ -35,8 +35,9 @@ class PresidentController extends Controller
         return redirect()->route('presidents.index')->with('success', 'President created successfully!');
     }
     // Mostrar un presidente específico
-    public function show(President $president)
+    public function show($dni)
     {
+        $president = President::find($dni);
         return view('presidents.show', compact('president'));
     }
 
